@@ -5,11 +5,11 @@
 
 using namespace std;
 
-vector<graph*> adj_list; // one dimensional vector; each position in the vector stores a pointer to the head of a linked list
+vector<Graph*> adj_list; // one dimensional vector; each position in the vector stores a pointer to the head of a linked list
 
 
-void graph::init(int num_of_vertices){
-	for (int i = 1; i <= num_of_vertices; i++){
+void Graph::init(int n){
+	for (int i = 1; i <= n; i++){
 		graph* list = new graph;
 		list->head = NULL;
 		adj_list.push_back(list);
@@ -17,14 +17,14 @@ void graph::init(int num_of_vertices){
 	cout << endl << endl << endl;
 }
 
-void graph::insert_edge(int vertex1, int vertex2){
-	graph* nodeA = adj_list[vertex1]->head;
+void Graph::insert_edge(int v1, int v2){
+	graph* nodeA = adj_list[v1]->head;
 	graph* nodeB = new graph;
 	nodeB->next = NULL;
 	nodeB->prev = NULL;
-	nodeB->edge = vertex2;
+	nodeB->edge = v2;
 	if (nodeA == NULL){
-		adj_list[vertex1]->head = nodeB;
+		adj_list[v1]->head = nodeB;
 	}
 	else
 	{
@@ -35,8 +35,8 @@ void graph::insert_edge(int vertex1, int vertex2){
 	cout << endl << endl << endl;
 }
 
-void graph::list_all_edges(int num_of_vertices){
-	for (int i = 1; i < num_of_vertices; i++){
+void Graph::list_all_edges(int n){
+	for (int i = 1; i < n; i++){
 		for (graph *to = adj_list[i]->head; to != NULL; to = to->next)
 			cout << i << "->" << to->edge << endl;
 	}
@@ -44,7 +44,7 @@ void graph::list_all_edges(int num_of_vertices){
 	cout << endl << endl << endl;
 }
 
-void graph::list_all_neighbors(int vertex1, int num_of_vertices){
+void Graph::list_all_neighbors(int vertex1){
 	for (graph *nodeA = adj_list[vertex1]->head; nodeA != NULL; nodeA = nodeA->next){
 		cout << vertex1 << " -> " << nodeA->edge << endl;
 	}
@@ -52,7 +52,7 @@ void graph::list_all_neighbors(int vertex1, int num_of_vertices){
 	cout << endl << endl << endl;
 }
 
-void graph::no_incoming(int num_of_vertices){
+void Graph::no_incoming(int num_of_vertices){
 	bool* nodeA = new bool[num_of_vertices];
 	for (int i = 1; i <= num_of_vertices; i++){
 		nodeA[i] = true;
