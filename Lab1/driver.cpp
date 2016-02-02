@@ -55,5 +55,5 @@ int main()
 
     } //end switch
   }  //end while
-
+clear
 }
