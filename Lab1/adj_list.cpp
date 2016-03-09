@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include "graph.h"
+#include "Graph.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ vector<Graph*> adj_list; // one dimensional vector; each position in the vector 
 
 void Graph::init(int n){
 	for (int i = 1; i <= n; i++){
-		graph* list = new graph;
+		Graph* list = new Graph;
 		list->head = NULL;
 		adj_list.push_back(list);
 	}
@@ -18,8 +18,8 @@ void Graph::init(int n){
 }
 
 void Graph::insert_edge(int v1, int v2){
-	graph* nodeA = adj_list[v1]->head;
-	graph* nodeB = new graph;
+	Graph* nodeA = adj_list[v1]->head;
+	Graph* nodeB = new Graph;
 	nodeB->next = NULL;
 	nodeB->prev = NULL;
 	nodeB->edge = v2;
@@ -37,7 +37,7 @@ void Graph::insert_edge(int v1, int v2){
 
 void Graph::list_all_edges(int n){
 	for (int i = 1; i < n; i++){
-		for (graph *to = adj_list[i]->head; to != NULL; to = to->next)
+		for (Graph *to = adj_list[i]->head; to != NULL; to = to->next)
 			cout << i << "->" << to->edge << endl;
 	}
 	//implement this function
@@ -45,7 +45,7 @@ void Graph::list_all_edges(int n){
 }
 
 void Graph::list_all_neighbors(int vertex1){
-	for (graph *nodeA = adj_list[vertex1]->head; nodeA != NULL; nodeA = nodeA->next){
+	for (Graph *nodeA = adj_list[vertex1]->head; nodeA != NULL; nodeA = nodeA->next){
 		cout << vertex1 << " -> " << nodeA->edge << endl;
 	}
 	//implement this function
@@ -58,7 +58,7 @@ void Graph::no_incoming(int num_of_vertices){
 		nodeA[i] = true;
 	}
 	for (int i = 1; i <= num_of_vertices; i++){
-		for (graph* current = adj_list[i]->head; current != NULL; current = current->next){
+		for (Graph* current = adj_list[i]->head; current != NULL; current = current->next){
 			nodeA[current->edge] = false;
 		}
 	}
